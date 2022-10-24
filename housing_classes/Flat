@@ -1,0 +1,12 @@
+import Property
+
+class Flat(Property):
+    def __init__(self, area, rooms, price, address, floor):
+        self.area = area
+        self.rooms = rooms
+        self.price = price
+        self.address = address
+        self.floor = floor
+        
+    def __str__(self):
+        return f"{self.area}\n{self.rooms}\n{self.price}\n{self.address}\n{self.floor}"   
