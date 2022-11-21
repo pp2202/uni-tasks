@@ -6,8 +6,8 @@ def color_treshhold(a):
     
     cap = cv.VideoCapture(a)
 
-    frame_width = int(cap.get(3)*0.25)
-    frame_height = int(cap.get(4)*0.25)
+    frame_width = int(cap.get(3)*0.2)
+    frame_height = int(cap.get(4)*0.2)
 
     dims = (frame_width,frame_height)
 
@@ -23,19 +23,25 @@ def color_treshhold(a):
 
             frame = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
             th_frame = frame.copy()
-            lower_red_mask = np.array([0,120,30])
+            lower_red_mask = np.array([0,180,30])
             
-            upper_red_mask = np.array([4,255,255])
+            upper_red_mask = np.array([7,255,255])
             
-            lower_blue_mask = np.array([110,200,30])
+            lower_blue_mask = np.array([100,160,30])
             
             upper_blue_mask = np.array([120,255,255])
+
+            lower_red_mask_upper_hue = np.array([172,120,30])
+
+            upper_red_mask_upper_hue = np.array([179,255,255])
             
             red_mask = cv.inRange(frame, lower_red_mask, upper_red_mask)
             
             blue_mask = cv.inRange(frame, lower_blue_mask, upper_blue_mask)
+
+            upper_hue_red_mask = cv.inRange(frame, lower_red_mask_upper_hue, upper_red_mask_upper_hue)
             
-            th_frame = cv.bitwise_and(th_frame, th_frame, mask=blue_mask|red_mask)
+            th_frame = cv.bitwise_and(th_frame, th_frame, mask=blue_mask|red_mask|upper_hue_red_mask)
 
             rgb_frame = cv.cvtColor(th_frame, cv.COLOR_HSV2BGR)
 
