@@ -11,8 +11,8 @@ def color_treshhold(a):
     kernel_c = np.ones((12,12),np.uint8)
 
     #importing the frame dimensions and rescaling them for the output
-    frame_width = int(cap.get(3)*0.2)
-    frame_height = int(cap.get(4)*0.2)
+    frame_width = int(cap.get(3)*0.4)
+    frame_height = int(cap.get(4)*0.4)
     dims = (frame_width,frame_height)
 
     #declaring output file
