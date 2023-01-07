@@ -27,7 +27,7 @@ disp.display_examples(augmented_train_split, classes)
 
 model = ml.create_model()
 
-history = model.fit(augmented_train_split, validation_data = test_split, epochs = 128, callbacks = [mr.set_callback(10, 'min', 0.0005)])
+history = model.fit(augmented_train_split, validation_data = test_split, epochs = 128, callbacks = [mr.set_callback(10, 'min', 0.00025)])
 
 disp.plot_history(history)
 
