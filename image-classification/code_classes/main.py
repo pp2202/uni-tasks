@@ -1,9 +1,9 @@
 import os
 import tensorflow as tf
 from ml_model import modelCreation as ml
-from ml_utilities import dataSet as ds
-from ml_utilities import Display as disp
-from ml_utilities import modelRelated as mr
+import data_set_operations as ds
+import plot_display as disp
+import model_operations as mo
 
 tf.get_logger().setLevel('ERROR')
 
@@ -21,13 +21,13 @@ ds.list_dataset_details(classes, paths)
 
 disp.display_examples(train_split, classes)
 
-augmented_train_split = mr.augment_data(train_split)
+augmented_train_split = mo.augment_data(train_split)
 
 disp.display_examples(augmented_train_split, classes)
 
 model = ml.create_model()
 
-history = model.fit(augmented_train_split, validation_data = test_split, epochs = 128, callbacks = [mr.set_callback(10, 'min', 0.00025)])
+history = model.fit(augmented_train_split, validation_data = test_split, epochs = 128, callbacks = [mo.set_callback(10, 'min', 0.00025)])
 
 disp.plot_history(history)
 
